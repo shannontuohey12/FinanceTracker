@@ -1,6 +1,16 @@
+require("dotenv").config()
+const mongoose = require("mongoose")
+mongoose.connect(process.env.dbURL)
+.then(() => console.log("DB Connected!!"))
+.catch(error => console.log(error));
+
+
 const express = require("express")
 const app = express()
 const path = require('path')
+
+const userRoutes = require("./server/routes/user") //import user routes to be used in app.use below
+const transactionRoutes = require("./server/routes/transaction") //import transaction routes to be used in app.use below
 
 app.use(express.json())
 
@@ -16,6 +26,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public', 'index.html'));
 });
+
+app.use('/user', userRoutes) //use user routes for any url that starts with /users
+app.use('/transaction', transactionRoutes) //use transaction routes for any url that starts with /transactions
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`))
