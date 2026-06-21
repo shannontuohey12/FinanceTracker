@@ -11,6 +11,7 @@ const path = require('path')
 
 const userRoutes = require("./server/routes/user") //import user routes to be used in app.use below
 const transactionRoutes = require("./server/routes/transaction") //import transaction routes to be used in app.use below
+const goalRoutes = require("./server/routes/goal") //import goal routes to be used in app.use below
 
 app.use(express.json())
 
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
 
 app.use('/user', userRoutes) //use user routes for any url that starts with /users
 app.use('/transaction', transactionRoutes) //use transaction routes for any url that starts with /transactions
+app.use('/goal', goalRoutes) //use goal routes for any url that starts with /goals
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`))
