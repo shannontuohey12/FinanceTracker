@@ -32,7 +32,7 @@ app.use('/user', userRoutes) //use user routes for any url that starts with /use
 app.use('/transaction', transactionRoutes) //use transaction routes for any url that starts with /transactions
 app.use('/goal', goalRoutes) //use goal routes for any url that starts with /goals
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`))
 
 /*

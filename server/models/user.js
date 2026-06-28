@@ -1,4 +1,5 @@
 const mongoose = require("mongoose") // import mongoose library
+const bcrypt = require('bcryptjs') // import bcrypt library for password hashing
 
 const userSchema = new mongoose.Schema({ // create a schema for our user
   firstName: { type: String, required: true },
@@ -17,13 +18,17 @@ async function register(firstName, lastName, email, password) {
     if(user) {
         throw new Error('Email is already in use.');
     }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(password, salt);
+    
     const newUser = await User.create({
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: password
+        password: hashed
     })
-    return newUser;
+    return newUser._doc;
 
 }
 //Read a user (log in)
@@ -32,15 +37,19 @@ async function login(email, password) {
     if(!user) {
         throw new Error('User not found.');
     }
-    if(user.password != password) {
+
+    const isMatch = await bcrypt.compare(password, user.password); // Compare the provided password with the hashed password in the database
+    if(!isMatch) {
         throw new Error('Wrong password.');
     }
-    return user;
+    return user._doc;
 }
 
 //Update a user (update profile)
 async function updatePassword(id, password){
-    const user = await User.updateOne({ "_id": id }, {$set: { password: password }})
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(password, salt);
+    const user = await User.updateOne({ "_id": id }, {$set: { password: hashed }})
     return user;
 }
 
