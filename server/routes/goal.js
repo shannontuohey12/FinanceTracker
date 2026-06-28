@@ -1,7 +1,7 @@
 //import any needed libraries
 const express = require("express")
-const Goal = require("../models/goal") //accesses functions in user model file
-const router = express.Router() //create router object to create routes for user
+const Goal = require("../models/goal") //accesses functions in goal model file
+const router = express.Router() //create router object to create routes for goal
 
 router
 .post('/create', async (req, res) => { //create goal with goalTitle, targetAmount, currentAmount, and userId

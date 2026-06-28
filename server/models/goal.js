@@ -20,7 +20,7 @@ async function createGoal(goalTitle, targetAmount, currentAmount, userId) {
     });
     return goal;
 }
-//Read a goal (get goal by ID)
+//Read a goal (get goal by title)
 async function getGoal(goalTitle) {
     const goal = await Goal.findOne({ goalTitle: goalTitle });
     return goal;
