@@ -1,5 +1,68 @@
+.custom-navbar {
+  background-color: #f0e0f4;
+  padding: 1rem;
+
+}
+
+.custom-navbar .navbar-brand {
+  color: #612461;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.custom-navbar .nav-link {
+  color: #612461;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #9b59b6;
+  text-decoration: underline;
+}
+
+.custom-navbar .nav-link.active {
+  color: #9b59b6;
+  font-weight: bold;
+}
+
+.custom-navbar .navbar-toggler {
+  border-color: #612461;
+}
+
+.login-btn {
+  background-color: #612461;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}
+
+.register-btn {
+  background-color: #9b59b6;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}
+
 .App {
   text-align: center;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+  border-radius: 40px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-control:focus {
+  border-color: #d397ea;
+  box-shadow: 0 0 5px rgba(150, 101, 169, 0.5);
 }
 
 .App-logo {
