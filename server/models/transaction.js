@@ -4,7 +4,7 @@ const transactionSchema = new mongoose.Schema({ // create a schema for our trans
   amount: { type: Number, required: true },
   date: { type: String, required: true },
   location: { type: String, required: true },
-  userId: { type: Number, required: true }
+  userId: { type: String, required: true }
 });
 
 //create mongoose model of schema
