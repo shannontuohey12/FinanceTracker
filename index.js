@@ -6,7 +6,10 @@ mongoose.connect(process.env.dbURL)
 
 
 const express = require("express")
+const cors = require("cors")
 const app = express()
+app.use(cors())
+app.use(express.json())
 const path = require('path')
 
 const userRoutes = require("./server/routes/user") //import user routes to be used in app.use below
@@ -32,7 +35,7 @@ app.use('/user', userRoutes) //use user routes for any url that starts with /use
 app.use('/transaction', transactionRoutes) //use transaction routes for any url that starts with /transactions
 app.use('/goal', goalRoutes) //use goal routes for any url that starts with /goals
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5001
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`))
 
 /*

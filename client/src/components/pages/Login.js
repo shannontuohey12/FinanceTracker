@@ -2,6 +2,7 @@ const Login = () => {
 
     return(
         <div>
+            <h1>Login</h1>
             <form>
                 <div className = "mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
