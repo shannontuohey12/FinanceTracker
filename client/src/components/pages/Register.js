@@ -1,7 +1,9 @@
 import { fetchData } from "../../main.js";
 import { useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -21,7 +23,8 @@ const Register = () => {
         fetchData("user/register", user, "POST")
         .then((data)=>{
             if(!data.message){
-                console.log(data)
+                localStorage.setItem("loggedInUser", JSON.stringify(data));
+                navigate("/profile")
             }
         })
         .catch((error)=>{
@@ -37,7 +40,7 @@ const Register = () => {
 
     return(
         <div>
-            <h1>Register</h1>
+            <h1>⋆ ˚｡⋆♡ Register ♡⋆ ˚｡⋆</h1>
             <form onSubmit={onSubmit}>
                 <div className = "mb-3">
                     <label htmlFor="firstName" className="form-label">First Name</label>
@@ -101,8 +104,10 @@ const Register = () => {
                         required
                     />
                 </div>
-                <input type="submit" className="btn register-btn" value="Register" />
+                <input type="submit" className="btn login-btn" value="Register" />
             </form>
+            <br></br>
+            <br></br>
         </div>
     )}
 

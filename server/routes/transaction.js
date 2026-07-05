@@ -6,7 +6,7 @@ const router = express.Router() //create router object to create routes for user
 router
 .post('/create', async (req, res) => {
     try{
-        const transaction = await Transaction.createTransaction(req.body.amount, req.body.date, req.body.location, req.body.userId)
+        const transaction = await Transaction.createTransaction(req.body.amount, req.body.date, req.body.location, req.body.description, req.body.userId)
         res.send(transaction);
     }
     catch(error) {
@@ -17,6 +17,15 @@ router
     try{
         const transaction = await Transaction.getTransaction(req.body.date)
         res.send(transaction);
+    }
+    catch(error) {
+        res.status(401).send({message: error.message});
+}
+})
+.post('/user', async (req, res) => {
+    try{
+        const transactions = await Transaction.getTransactionsByUser(req.body.userId)
+        res.send(transactions);
     }
     catch(error) {
         res.status(401).send({message: error.message});
