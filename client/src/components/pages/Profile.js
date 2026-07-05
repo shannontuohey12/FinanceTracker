@@ -23,6 +23,7 @@ const Profile = () => {
             amount: formData.get("amount"),
             date: formData.get("date"),
             location: formData.get("location"),
+            description: formData.get("description"),
             userId: user._id
         };
 
